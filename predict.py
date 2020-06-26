@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
 
 df = pd.read_csv('data/train.csv')
 
@@ -47,3 +48,25 @@ df_test = pd.read_csv('data/test.csv')
 
 list_num_columns.remove('SalePrice')
 fillna_all(df_test)
+
+dummy1 = pd.get_dummies(df_test[list_obj_columns], prefix=list_obj_columns)
+
+df_test = pd.read_csv('data/test.csv')
+df_train_test = pd.concat([df.drop('SalePrice',axis=1), df_test], axis=0)
+
+fillna_all(df_train_test)
+
+dummy3 = pd.get_dummies(df_train_test[list_obj_columns], prefix=list_obj_columns)
+
+#print(dummy.shape, dummy1.shape, dummy3.shape)
+df_train_test.drop(list_obj_columns, axis=1 ,inplace=True)
+#print(df_train_test.shape)
+
+df_train_test_final = pd.concat([df_train_test,dummy3], axis=0)
+#print(df_train_test_final.shape)
+
+x_train = df_train_test_final.iloc[0:1460]
+x_test = df_train_test_final.iloc[1460:]
+
+y = df['SalePrice']
+
