@@ -41,4 +41,7 @@ df_finl = pd.concat([df,dummy],axis=1)
 # print(dummy.shape)
 # print(df_finl.shape)
 
-print(df_finl.info())
+#print(df_finl.info())
+
+df_test = pd.read_csv('data/test.csv')
+print(df_test.info())
