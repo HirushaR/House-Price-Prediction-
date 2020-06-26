@@ -2,6 +2,9 @@ import pandas as pd
 
 df = pd.read_csv('data/train.csv')
 
+
+######################### clean data #########################
+
 #print(df.info())
 # check how many column with null values
 #print(sum(df.isna().any()))
@@ -13,7 +16,7 @@ list_obj_columns = list(df.select_dtypes(include='object').columns)
 
 #select all the columns data type isnt object
 list_num_columns = list(df.select_dtypes(exclude='object').columns)
-print(len(list_num_columns))
+
 
 # create function to fill na values
 def fillna_all(df):
@@ -24,4 +27,18 @@ def fillna_all(df):
 
 fillna_all(df)
 
-print(df.info())
+#################### features encoding ############################
+
+# for col in list_obj_columns:
+#     print(col, ':', df[col].nunique())
+
+temp = df['Id']
+dummy = pd.get_dummies(df[list_obj_columns], prefix=list_obj_columns)
+df.drop(list_obj_columns, axis=1, inplace=True)
+#
+
+df_finl = pd.concat([df,dummy],axis=1)
+# print(dummy.shape)
+# print(df_finl.shape)
+
+print(df_finl.info())
