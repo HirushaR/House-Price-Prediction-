@@ -44,4 +44,6 @@ df_finl = pd.concat([df,dummy],axis=1)
 #print(df_finl.info())
 
 df_test = pd.read_csv('data/test.csv')
-print(df_test.info())
+
+list_num_columns.remove('SalePrice')
+fillna_all(df_test)
