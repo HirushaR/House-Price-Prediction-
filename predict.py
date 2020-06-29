@@ -103,3 +103,19 @@ plt.xlabel('Prediction Price')
 plt.ylabel('actual Price')
 plt.title('LinearRegression Model')
 plt.show()
+
+for i in range(-2,3):
+    alpha = 10**i
+    rm = linear_model.Ridge(alpha=alpha)
+    ridge_model = rm.fit(X_train, Y_train)
+    preds_ridge = ridge_model.predict(X_test)
+
+    plt.scatter(preds_ridge,actual_value,alpha=.75,color='b')
+    plt.xlabel('Prediction Price')
+    plt.ylabel('actual Price')
+    plt.title('Ridge Regression with alpha = {}'.format(alpha))
+    overlay = 'R*2 is : {}\n RMSE is: {}'.format(
+        ridge_model.score(X_test,Y_test),
+        mean_squared_error(Y_test,preds_ridge))
+    plt.annotate(s=overlay,xy=(12.1,10.6),size='x-large')
+    plt.show()
