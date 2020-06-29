@@ -20,4 +20,7 @@ print("skew is:",train.SalePrice.skew())
 plt.hist(train.SalePrice,color='blue')
 plt.show()
 
-
+target = np.log(train.SalePrice)
+print("\n skew is:",target.skew())
+plt.hist(target,color='blue')
+plt.show()
