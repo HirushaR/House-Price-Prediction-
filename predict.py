@@ -24,3 +24,9 @@ target = np.log(train.SalePrice)
 print("\n skew is:",target.skew())
 plt.hist(target,color='blue')
 plt.show()
+
+numeric_features = train.select_dtypes(include=[np.number])
+corr = numeric_features.corr()
+
+print(corr['SalePrice'].sort_values(ascending=False)[:5], '\n')
+print(corr['SalePrice'].sort_values(ascending=False)[-5:])
