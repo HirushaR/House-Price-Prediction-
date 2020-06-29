@@ -88,3 +88,6 @@ y = np.log(train.SalePrice)
 x = data.drop(['SalePrice','Id'], axis=1)
 
 X_train , X_test ,Y_train,Y_test = train_test_split(x,y,random_state=42,test_size=.33)
+
+lr = linear_model.LinearRegression()
+model = lr.fit(X_train,Y_train)
