@@ -80,3 +80,6 @@ plt.xlabel('Encoded SaleCondition')
 plt.ylabel('Median SalePrice')
 plt.xticks(rotation=0)
 plt.show()
+
+data = train.select_dtypes(include = [np.number]).interpolate().dropna()
+print(sum(data.isnull().sum() != 0))
