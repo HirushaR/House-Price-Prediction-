@@ -93,3 +93,13 @@ lr = linear_model.LinearRegression()
 model = lr.fit(X_train,Y_train)
 
 print(" R^2 is:\n",model.score(X_test,Y_test))
+
+predictions = model.predict(X_test)
+print("RMSE is :\n", mean_squared_error(Y_test,predictions))
+
+actual_value =Y_test
+plt.scatter(predictions,actual_value,alpha=0.75,color='b')
+plt.xlabel('Prediction Price')
+plt.ylabel('actual Price')
+plt.title('LinearRegression Model')
+plt.show()
