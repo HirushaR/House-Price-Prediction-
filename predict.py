@@ -91,3 +91,5 @@ X_train , X_test ,Y_train,Y_test = train_test_split(x,y,random_state=42,test_siz
 
 lr = linear_model.LinearRegression()
 model = lr.fit(X_train,Y_train)
+
+print(" R^2 is:\n",model.score(X_test,Y_test))
