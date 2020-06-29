@@ -15,3 +15,9 @@ plt.style.use(style='ggplot')
 plt.rcParams['figure.figsize'] = (10,6)
 
 print(train.SalePrice.describe())
+
+print("skew is:",train.SalePrice.skew())
+plt.hist(train.SalePrice,color='blue')
+plt.show()
+
+
