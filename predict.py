@@ -119,3 +119,21 @@ for i in range(-2,3):
         mean_squared_error(Y_test,preds_ridge))
     plt.annotate(s=overlay,xy=(12.1,10.6),size='x-large')
     plt.show()
+
+submission = pd.DataFrame()
+submission['Id'] = test.Id
+
+feats = test.select_dtypes(include = [np.number]).drop(['Id'],axis=1).interpolate()
+
+predictions = model.predict(feats)
+
+final_predictions =np.exp(predictions)
+
+print("Original prediction: \n", predictions[:10],"\n")
+print("Final prediction: \n", final_predictions[:10],"\n")
+
+submission['SalePrice'] = final_predictions
+print(submission.head())
+
+submission.to_csv('data/submission.csv',index=False)
+
