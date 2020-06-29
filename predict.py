@@ -16,14 +16,14 @@ plt.rcParams['figure.figsize'] = (10,6)
 
 print(train.SalePrice.describe())
 
-print("skew is:",train.SalePrice.skew())
-plt.hist(train.SalePrice,color='blue')
-plt.show()
+# print("skew is:",train.SalePrice.skew())
+# plt.hist(train.SalePrice,color='blue')
+# plt.show()
 
 target = np.log(train.SalePrice)
-print("\n skew is:",target.skew())
-plt.hist(target,color='blue')
-plt.show()
+# print("\n skew is:",target.skew())
+# plt.hist(target,color='blue')
+# plt.show()
 
 numeric_features = train.select_dtypes(include=[np.number])
 corr = numeric_features.corr()
@@ -31,21 +31,25 @@ corr = numeric_features.corr()
 print(corr['SalePrice'].sort_values(ascending=False)[:5], '\n')
 print(corr['SalePrice'].sort_values(ascending=False)[-5:])
 
-plt.scatter(x = train['GarageArea'], y =target)
-plt.ylabel('SalePrice')
-plt.xlabel('Garage Area')
-plt.show()
+# plt.scatter(x = train['GarageArea'], y =target)
+# plt.ylabel('SalePrice')
+# plt.xlabel('Garage Area')
+# plt.show()
 
 train = train[train['GarageArea'] < 1200]
 
-plt.scatter(x = train['GarageArea'], y =np.log(train.SalePrice))
-plt.xlim(-200,1600)
-plt.ylabel('SalePrice')
-plt.xlabel('Garage Area')
-plt.show()
+# plt.scatter(x = train['GarageArea'], y =np.log(train.SalePrice))
+# plt.xlim(-200,1600)
+# plt.ylabel('SalePrice')
+# plt.xlabel('Garage Area')
+# plt.show()
 
 nulls = pd.DataFrame(train.isnull().sum().sort_values(ascending=False)[:25])
 nulls.columns =['Null Count']
 nulls.index.name = 'Frature'
 
-print(nulls)
+# print(nulls)
+
+categoricals = train.select_dtypes(exclude=[np.number])
+
+print(categoricals.describe())
