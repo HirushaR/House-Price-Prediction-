@@ -69,3 +69,14 @@ plt.xlabel('SaleCondition')
 plt.ylabel('Median SalePrice')
 plt.xticks(rotation=0)
 plt.show()
+
+def encode(x): return 1 if x == 'Partial' else 0
+train['enc_condition'] = train.SaleCondition.apply(encode)
+test['enc_condition'] = test.SaleCondition.apply(encode)
+
+condition_pivot = train.pivot_table(index='enc_condition',values='SalePrice',aggfunc=np.median)
+condition_pivot.plot(kind='bar',color='blue')
+plt.xlabel('Encoded SaleCondition')
+plt.ylabel('Median SalePrice')
+plt.xticks(rotation=0)
+plt.show()
