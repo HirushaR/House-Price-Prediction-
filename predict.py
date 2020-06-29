@@ -43,3 +43,9 @@ plt.xlim(-200,1600)
 plt.ylabel('SalePrice')
 plt.xlabel('Garage Area')
 plt.show()
+
+nulls = pd.DataFrame(train.isnull().sum().sort_values(ascending=False)[:25])
+nulls.columns =['Null Count']
+nulls.index.name = 'Frature'
+
+print(nulls)
