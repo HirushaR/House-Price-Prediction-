@@ -62,3 +62,10 @@ test['enc_street'] = pd.get_dummies(train.Street, drop_first=True)
 
 print("Encoded:\n")
 print(train.enc_street.value_counts())
+
+condition_pivot = train.pivot_table(index='SaleCondition',values='SalePrice',aggfunc=np.median)
+condition_pivot.plot(kind='bar',color='blue')
+plt.xlabel('SaleCondition')
+plt.ylabel('Median SalePrice')
+plt.xticks(rotation=0)
+plt.show()
