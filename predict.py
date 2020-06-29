@@ -30,3 +30,16 @@ corr = numeric_features.corr()
 
 print(corr['SalePrice'].sort_values(ascending=False)[:5], '\n')
 print(corr['SalePrice'].sort_values(ascending=False)[-5:])
+
+plt.scatter(x = train['GarageArea'], y =target)
+plt.ylabel('SalePrice')
+plt.xlabel('Garage Area')
+plt.show()
+
+train = train[train['GarageArea'] < 1200]
+
+plt.scatter(x = train['GarageArea'], y =np.log(train.SalePrice))
+plt.xlim(-200,1600)
+plt.ylabel('SalePrice')
+plt.xlabel('Garage Area')
+plt.show()
