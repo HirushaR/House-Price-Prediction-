@@ -53,3 +53,12 @@ nulls.index.name = 'Frature'
 categoricals = train.select_dtypes(exclude=[np.number])
 
 print(categoricals.describe())
+
+print("Original:\n")
+print(train.Street.value_counts())
+
+train['enc_street'] = pd.get_dummies(train.Street, drop_first=True)
+test['enc_street'] = pd.get_dummies(train.Street, drop_first=True)
+
+print("Encoded:\n")
+print(train.enc_street.value_counts())
