@@ -83,3 +83,6 @@ plt.show()
 
 data = train.select_dtypes(include = [np.number]).interpolate().dropna()
 print(sum(data.isnull().sum() != 0))
+
+y = np.log(train.SalePrice)
+x = data.drop(['SalePrice','Id'], axis=1)
